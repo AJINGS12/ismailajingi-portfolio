@@ -1118,3 +1118,25 @@ footer {
   }
 }
 
+
+.prototype-section {
+  margin: 2rem 0;
+  padding: 1rem;
+  background-color: #f7f7f7;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.prototype-section h2 {
+  margin-bottom: 0.5rem;
+}
+
+.prototype-section a {
+  color: #1a73e8;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.prototype-section a:hover {
+  text-decoration: underline;
+}
