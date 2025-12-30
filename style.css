@@ -30,7 +30,7 @@
 }
 
 .section__header {
-  font-size: 3rem;
+  font-size: 2.5rem;
   font-weight: 700;
   color: var(--secondary-color);
   text-align: center;
@@ -232,10 +232,10 @@ header {
 
 .header__content h1 {
   margin-bottom: 1rem;
-  font-size: 4.8rem;
+  font-size: 3.5rem;
   font-weight: 800;
   color: var(--secondary-color);
-  line-height: 5.5rem;
+  line-height: 4rem;
   text-align: center;
 }
 
@@ -509,7 +509,7 @@ header {
 .service__card span {
   display: inline-block;
   padding: 6px 14px;
-  font-size: 2rem;
+  font-size: 1.5rem;
   color: var(--white);
   background-color: var(--primary-color);
   transform: translateY(-50%);
@@ -544,6 +544,7 @@ header {
 
 .portfolio {
   background-color: var(--extra-light);
+  padding: 4rem 0;
 }
 
 .portfolio__nav {
@@ -569,35 +570,50 @@ header {
 
 .portfolio__grid {
   display: grid;
-  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  padding: 0 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  align-items: start;
 }
 
 .portfolio__card {
   overflow: hidden;
-  border-radius: 10px;
-  transition: transform 0.3s ease;
+  border-radius: 15px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background: var(--white);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
 }
 
 .portfolio__card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-8px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
 }
 
 .portfolio__card a {
   display: block;
   text-decoration: none;
+  width: 100%;
+  height: 100%;
 }
 
 .portfolio__card img {
   width: 100%;
-  height: 200px;
-  object-fit: cover;
-  border-radius: 10px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-  transition: box-shadow 0.3s ease;
+  max-height: 250px;
+  min-height: 200px;
+  object-fit: contain;
+  background-color: var(--extra-light);
+  border-radius: 15px 15px 0 0;
+  transition: transform 0.3s ease;
+  display: block;
+  flex: 1;
 }
 
 .portfolio__card:hover img {
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  transform: scale(1.05);
 }
 
 .banner__container {
@@ -788,7 +804,8 @@ header {
   }
 
   .portfolio__grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2.5rem;
   }
 
   .blog__grid {
@@ -886,7 +903,8 @@ header {
   }
 
   .portfolio__grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 3rem;
   }
 
   .banner__container {
@@ -935,7 +953,9 @@ header {
   }
 
   .portfolio__grid {
-    gap: 1.5em;
+    gap: 2rem;
+    padding: 0 0.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   }
 
   .blog__grid {
@@ -1241,8 +1261,18 @@ footer {
 
 /* Mobile responsive styles for CV dropdown */
 @media (max-width: 768px) {
+  .dropdown {
+    position: relative;
+    z-index: 1000;
+  }
+
   .dropdown-menu {
     min-width: 200px;
+    z-index: 1001;
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%);
   }
 
   .dropdown-item {
@@ -1253,5 +1283,15 @@ footer {
   .dropdown-section-title {
     font-size: 0.85rem;
     padding: 6px 14px 2px 14px;
+  }
+
+  /* Ensure dropdown appears above other content */
+  .header__container {
+    position: relative;
+    z-index: 1;
+  }
+
+  .dropdown-menu.show {
+    z-index: 1002;
   }
 }
