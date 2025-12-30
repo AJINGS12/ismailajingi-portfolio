@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kekezo Ride App | UI/UX Case Study</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-green: #00875F;
+            --accent-yellow: #FFD700;
+            --dark-bg: #0A0E1A;
+            --card-bg: #151923;
+            --text-primary: #FFFFFF;
+            --text-secondary: #94A3B8;
+            --gradient-1: linear-gradient(135deg, #00875F 0%, #00B377 100%);
+            --gradient-2: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Animated Background */
+        .bg-gradient {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: radial-gradient(circle at 20% 20%, rgba(0, 135, 95, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(255, 215, 0, 0.1) 0%, transparent 50%);
+            animation: bgShift 20s ease infinite;
+        }
+
+        @keyframes bgShift {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 80px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            text-align: center;
+            z-index: 2;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 20px;
+            background: rgba(255, 215, 0, 0.1);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 50px;
+            font-size: 14px;
+            color: var(--accent-yellow);
+            margin-bottom: 30px;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .hero h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(48px, 8vw, 96px);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #FFFFFF 0%, #94A3B8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 0.8s ease 0.2s backwards;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(18px, 3vw, 24px);
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            animation: fadeInUp 0.8s ease 0.4s backwards;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease 0.6s backwards;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 36px;
+            font-weight: 700;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Scroll Indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translate(-50%, 0); }
+            50% { transform: translate(-50%, 10px); }
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Section Styling */
+        section {
+            padding: 120px 0;
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-tag {
+            display: inline-block;
+            padding: 6px 16px;
+            background: rgba(0, 135, 95, 0.2);
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--primary-green);
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(36px, 5vw, 56px);
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .section-description {
+            font-size: 18px;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Process Cards */
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .process-card {
+            background: var(--card-bg);
+            border-radius: 24px;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .process-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0, 135, 95, 0.2);
+        }
+
+        .process-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--gradient-1);
+        }
+
+        .process-card.yellow::before {
+            background: var(--gradient-2);
+        }
+
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
+            background: rgba(0, 135, 95, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            color: var(--primary-green);
+            margin-bottom: 24px;
+        }
+
+        .yellow .card-icon {
+            background: rgba(255, 215, 0, 0.15);
+            color: var(--accent-yellow);
+        }
+
+        .card-number {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 80px;
+            font-weight: 800;
+            color: rgba(255, 255, 255, 0.03);
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .card-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .card-description {
+            color: var(--text-secondary);
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+        /* Image Gallery */
+        .image-showcase {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .showcase-item {
+            border-radius: 24px;
+            overflow: hidden;
+            position: relative;
+            aspect-ratio: 16/10;
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .showcase-item:hover {
+            transform: scale(1.02);
+        }
+
+        .showcase-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            background: var(--dark-bg);
+        }
+
+        .showcase-item.large {
+            grid-column: span 2;
+        }
+
+        .showcase-label {
+            position: absolute;
+            bottom: 16px;
+            left: 16px;
+            background: rgba(0, 0, 0, 0.8);
+            color: var(--text-primary);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding: 60px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, var(--primary-green), var(--accent-yellow));
+        }
+
+        .timeline-item {
+            display: flex;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(odd) {
+            flex-direction: row-reverse;
+        }
+
+        .timeline-content {
+            width: calc(50% - 40px);
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            background: var(--primary-green);
+            border: 4px solid var(--dark-bg);
+            border-radius: 50%;
+            z-index: 2;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            padding: 100px 20px;
+            background: var(--card-bg);
+            border-radius: 40px;
+            margin: 80px 20px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .cta-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(32px, 4vw, 48px);
+            margin-bottom: 20px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+
+        .btn {
+            padding: 16px 40px;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-primary {
+            background: var(--gradient-1);
+            color: white;
+            box-shadow: 0 10px 30px rgba(0, 135, 95, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(0, 135, 95, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--primary-green);
+            background: rgba(0, 135, 95, 0.1);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-secondary);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-stats {
+                gap: 30px;
+            }
+            
+            .image-showcase {
+                grid-template-columns: 1fr;
+            }
+            
+            .showcase-item.large {
+                grid-column: span 1;
+            }
+            
+            .timeline::before {
+                left: 20px;
+            }
+            
+            .timeline-item {
+                flex-direction: column !important;
+                padding-left: 50px;
+            }
+            
+            .timeline-content {
+                width: 100%;
+            }
+            
+            .timeline-dot {
+                left: 20px;
+            }
+        }
+
+        /* Video Section Styles */
+        .video-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .video-container {
+            width: 100%;
+        }
+
+        .video-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 30px;
+            border: 1px solid rgba(0, 135, 95, 0.2);
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+
+        .video-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 135, 95, 0.15);
+            border-color: var(--primary-green);
+        }
+
+        .video-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .video-header h3 {
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: 0;
+        }
+
+        .video-placeholder {
+            background: transparent;
+            border-radius: 12px;
+            padding: 0;
+            border: none;
+            transition: all 0.3s ease;
+        }
+
+        .video-placeholder:hover {
+            transform: scale(1.02);
+        }
+
+        .video-placeholder video {
+            border-radius: 8px;
+            width: 100%;
+            height: auto;
+            max-height: 300px;
+            object-fit: contain;
+        }
+
+        .prototype-link {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .prototype-link .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Dropdown Styles */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-toggle {
+            cursor: pointer;
+            position: relative;
+        }
+
+        .dropdown-toggle.active .fa-chevron-down {
+            transform: rotate(180deg);
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--card-bg);
+            border: 1px solid rgba(0, 135, 95, 0.2);
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            min-width: 250px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateX(-50%) translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            overflow: hidden;
+        }
+
+        .dropdown-menu.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .dropdown-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 20px;
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: all 0.2s ease;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .dropdown-item:last-child {
+            border-bottom: none;
+        }
+
+        .dropdown-item:hover {
+            background: rgba(0, 135, 95, 0.1);
+            color: var(--primary-green);
+        }
+
+        .dropdown-item i {
+            color: var(--primary-green);
+            width: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .video-showcase {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .video-card {
+                padding: 20px;
+            }
+
+            .video-placeholder {
+                padding: 30px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-gradient"></div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <i class="fas fa-star"></i>
+                UI/UX Case Study
+            </div>
+            <h1>Kekezo Ride App</h1>
+            <p class="hero-subtitle">Transforming urban transportation in Kano, Nigeria through user-centered design</p>
+            
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <div class="stat-number">20+</div>
+                    <div class="stat-label">User Interviews</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">4</div>
+                    <div class="stat-label">Design Phases</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">3</div>
+                    <div class="stat-label">Months Timeline</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="scroll-indicator">
+            <i class="fas fa-chevron-down" style="color: var(--text-secondary); font-size: 24px;"></i>
+        </div>
+    </section>
+
+    <!-- Overview Section -->
+    <section>
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">The Challenge</span>
+                <h2 class="section-title">Solving Real Problems</h2>
+                <p class="section-description">
+                    Keke riders in Kano face daily challenges with price negotiation, long waiting times, and inefficient driver-passenger matching. I set out to create a seamless digital solution.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section style="background: rgba(0, 135, 95, 0.02);">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Design Process</span>
+                <h2 class="section-title">From Research to Reality</h2>
+            </div>
+
+            <div class="process-grid">
+                <div class="process-card">
+                    <div class="card-number">01</div>
+                    <div class="card-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3 class="card-title">User Research</h3>
+                    <p class="card-description">
+                        Conducted surveys with 20+ Keke riders using Google Forms and street interviews with drivers to understand pain points, behaviors, and needs.
+                    </p>
+                </div>
+
+                <div class="process-card">
+                    <div class="card-number">02</div>
+                    <div class="card-icon">
+                        <i class="fas fa-microphone-lines"></i>
+                    </div>
+                    <h3 class="card-title">Driver Insights</h3>
+                    <p class="card-description">
+                        Deep-dive interviews revealed fuel waste from passenger searching and the critical need for efficient trip matching algorithms.
+                    </p>
+                </div>
+
+                <div class="process-card yellow">
+                    <div class="card-number">03</div>
+                    <div class="card-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3 class="card-title">Visual Design</h3>
+                    <p class="card-description">
+                        Developed high-fidelity screens using Keke-inspired green and yellow, ensuring cultural relevance and intuitive usability for diverse users.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Visual Showcase -->
+    <section>
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Design Showcase</span>
+                <h2 class="section-title">The Final Product</h2>
+            </div>
+
+            <div class="image-showcase">
+                <div class="showcase-item large">
+                    <img src="assets/orwr hifi.png" alt="High fidelity design mockup">
+                    <div class="showcase-label">HiFi Prototype</div>
+                </div>
+                <div class="showcase-item">
+                    <img src="assets/kekezo-project phot .png" alt="User research process">
+                    <div class="showcase-label">User Research Google Form</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Future Roadmap -->
+    <section style="background: rgba(0, 135, 95, 0.02);">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">What's Next</span>
+                <h2 class="section-title">Future Vision</h2>
+            </div>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3 style="font-size: 24px; margin-bottom: 12px;">Multilingual Support</h3>
+                        <p style="color: var(--text-secondary);">
+                            Incorporate Hausa, Yoruba, and Igbo languages to ensure inclusive access across Nigeria's diverse linguistic landscape.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot" style="background: var(--accent-yellow);"></div>
+                    <div class="timeline-content">
+                        <h3 style="font-size: 24px; margin-bottom: 12px;">National Expansion</h3>
+                        <p style="color: var(--text-secondary);">
+                            Scale Kekezo to other states and cities, bringing improved transportation solutions to communities nationwide.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3 style="font-size: 24px; margin-bottom: 12px;">Advanced Features</h3>
+                        <p style="color: var(--text-secondary);">
+                            Implement AI-powered route optimization, in-app safety features, and digital payment integration for seamless transactions.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- App Flow Videos Section -->
+    <section style="background: rgba(0, 135, 95, 0.02); padding: 80px 0;">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Interactive Demo</span>
+                <h2 class="section-title">App Flow Videos</h2>
+                <p style="color: var(--text-secondary); font-size: 18px; margin-top: 16px; text-align: center;">
+                    Experience the complete user journey through interactive video demonstrations of both the driver and passenger apps.
+                </p>
+            </div>
+
+            <div class="video-showcase">
+                <div class="video-container">
+                    <div class="video-card">
+                        <div class="video-header">
+                            <i class="fas fa-car" style="color: var(--primary-green); font-size: 24px;"></i>
+                            <h3>Driver App Flow</h3>
+                        </div>
+                        <div class="video-placeholder">
+                            <video controls style="width: 100%; border-radius: 8px;">
+                                <source src="assets/kekezo 1.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-container">
+                    <div class="video-card">
+                        <div class="video-header">
+                            <i class="fas fa-user" style="color: var(--primary-green); font-size: 24px;"></i>
+                            <h3>Passenger App Flow</h3>
+                        </div>
+                        <div class="video-placeholder">
+                            <video controls style="width: 100%; border-radius: 8px;">
+                                <source src="assets/kekezo-2.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="prototype-link">
+                <div class="dropdown">
+                    <button class="btn btn-primary dropdown-toggle" style="margin-top: 40px;">
+                        <i class="fas fa-external-link-alt"></i>
+                        View Interactive Prototype
+                        <i class="fas fa-chevron-down" style="margin-left: 8px; transition: transform 0.3s ease;"></i>
+                    </button>
+                    <div class="dropdown-menu">
+                        <a href="#" class="dropdown-item" onclick="openPrototype('driver')">
+                            <i class="fas fa-car"></i>
+                            Driver App Prototype
+                        </a>
+                        <a href="#" class="dropdown-item" onclick="openPrototype('passenger')">
+                            <i class="fas fa-user"></i>
+                            Passenger App Prototype
+                        </a>
+                    </div>
+                </div>
+                <p style="color: var(--text-secondary); font-size: 14px; margin-top: 12px; text-align: center;">
+                    Experience the full interactive prototype with clickable elements and realistic user flows
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <div class="container">
+        <div class="cta-section">
+            <h2 class="cta-title">Interested in Working Together?</h2>
+            <p style="color: var(--text-secondary); font-size: 18px; margin-top: 10px;">
+                Let's create something amazing.
+            </p>
+            
+            <div class="cta-buttons">
+                <a href="ismailajingi737@gmail.com" class="btn btn-primary">
+                    <i class="fas fa-envelope"></i>
+                    Get in Touch
+                </a>
+                <a href="assets/Kekezo project deck.pdf" download class="btn btn-secondary">
+                    <i class="fas fa-download"></i>
+                    Download Case Study
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>© 2025 Ismail Ajingi. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Smooth scroll for all internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.8s ease forwards';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.process-card, .showcase-item, .timeline-item').forEach(el => {
+            el.style.opacity = '0';
+            observer.observe(el);
+        });
+
+        // Dropdown functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const dropdownToggle = document.querySelector('.dropdown-toggle');
+            const dropdownMenu = document.querySelector('.dropdown-menu');
+
+            // Toggle dropdown on button click
+            dropdownToggle.addEventListener('click', function(e) {
+                e.preventDefault();
+                const isActive = dropdownToggle.classList.contains('active');
+
+                if (isActive) {
+                    dropdownToggle.classList.remove('active');
+                    dropdownMenu.classList.remove('show');
+                } else {
+                    dropdownToggle.classList.add('active');
+                    dropdownMenu.classList.add('show');
+                }
+            });
+
+            // Close dropdown when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!dropdownToggle.contains(e.target) && !dropdownMenu.contains(e.target)) {
+                    dropdownToggle.classList.remove('active');
+                    dropdownMenu.classList.remove('show');
+                }
+            });
+        });
+
+        // Prototype opening functions
+        function openPrototype(type) {
+            // Close dropdown
+            document.querySelector('.dropdown-toggle').classList.remove('active');
+            document.querySelector('.dropdown-menu').classList.remove('show');
+
+            // Define prototype URLs (replace with your actual prototype links)
+            const prototypes = {
+                driver: 'https://www.figma.com/proto/snY6Px0MO3zUBlg7bBUAeU/Kekezo-driver?node-id=0-1&t=U0nizy5jy2MYKNZU-1', 
+                passenger: 'https://www.figma.com/proto/bVLnaf70YBLF9eIzQ4XcLK/Kekezo?node-id=0-1&t=Q5e6NuSSk3mlD1Nm-1'
+            };
+
+            const url = prototypes[type];
+            if (url && url !== '#') {
+                window.open(url, '_blank');
+            } else {
+                // Placeholder alert - replace with actual prototype links
+                alert(`Opening ${type} app prototype... \n\nPlease replace the prototype URLs in the openPrototype function with your actual Figma/Adobe XD/Framer links.`);
+            }
+        }
+    </script>
+</body>
+</html>

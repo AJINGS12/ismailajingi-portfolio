@@ -23,14 +23,14 @@
 }
 
 .section__subheader {
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   font-weight: 500;
   color: var(--primary-color);
   text-align: center;
 }
 
 .section__header {
-  font-size: 2.5rem;
+  font-size: 3rem;
   font-weight: 700;
   color: var(--secondary-color);
   text-align: center;
@@ -53,6 +53,77 @@
   color: var(--secondary-color);
   background-color: transparent;
   box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Dropdown Styles */
+.dropdown {
+  position: relative;
+  display: inline-block;
+  z-index: 1000;
+}
+
+.dropdown-toggle {
+  cursor: pointer;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  z-index: 1001;
+}
+
+.dropdown-toggle.active .ri-arrow-down-s-line {
+  transform: rotate(180deg);
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  background-color: var(--white);
+  border: 2px solid var(--primary-color);
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  min-width: 220px;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  z-index: 1002;
+  overflow: hidden;
+  pointer-events: none;
+  padding: 0;
+  display: block;
+}
+
+.dropdown-menu.show {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.dropdown-item {
+  display: flex !important;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  color: var(--secondary-color);
+  text-decoration: none;
+  transition: all 0.2s ease;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.dropdown-item:last-child {
+  border-bottom: none;
+}
+
+.dropdown-item:hover {
+  background-color: var(--primary-color);
+  color: var(--white);
+}
+
+.dropdown-item i {
+  font-size: 1.2rem;
+  width: 20px;
 }
 
 img {
@@ -143,7 +214,7 @@ header {
   padding-block: 5rem 0;
   display: grid;
   gap: 2rem;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .header__image img {
@@ -153,7 +224,7 @@ header {
 }
 
 .header__content h2 {
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   font-weight: 500;
   color: var(--primary-color);
   text-align: center;
@@ -161,16 +232,16 @@ header {
 
 .header__content h1 {
   margin-bottom: 1rem;
-  font-size: 4rem;
+  font-size: 4.8rem;
   font-weight: 800;
   color: var(--secondary-color);
-  line-height: 5rem;
+  line-height: 5.5rem;
   text-align: center;
 }
 
 .header__content h3 {
   margin-bottom: 1rem;
-  font-display: 1.25rem;
+  font-size: 1.5rem;
   font-weight: 600;
   color: var(--secondary-color);
   text-align: center;
@@ -180,7 +251,8 @@ header {
   margin-bottom: 2rem;
   color: var(--text-light);
   text-align: center;
-  line-height: 1.75rem;
+  line-height: 2rem;
+  font-size: 1.1rem;
 }
 
 .header__btns {
@@ -234,7 +306,8 @@ header {
 .intro__description {
   margin-block: 1rem 2rem;
   color: var(--text-light);
-  line-height: 1.75rem;
+  line-height: 2rem;
+  font-size: 1.1rem;
 }
 
 .intro__grid {
@@ -452,7 +525,7 @@ header {
 
 .service__card h4 {
   margin-bottom: 0.5rem;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   font-weight: 600;
   color: var(--secondary-color);
   transition: 0.3s;
@@ -460,7 +533,8 @@ header {
 
 .service__card p {
   color: var(--text-light);
-  line-height: 1.75rem;
+  line-height: 2rem;
+  font-size: 1.05rem;
   transition: 0.3s;
 }
 
@@ -498,9 +572,32 @@ header {
   gap: 1rem;
 }
 
+.portfolio__card {
+  overflow: hidden;
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+}
+
+.portfolio__card:hover {
+  transform: translateY(-5px);
+}
+
+.portfolio__card a {
+  display: block;
+  text-decoration: none;
+}
+
 .portfolio__card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
   border-radius: 10px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+}
+
+.portfolio__card:hover img {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
 .banner__container {
@@ -525,7 +622,8 @@ header {
 .banner__content p {
   margin-bottom: 1rem;
   color: var(--white);
-  line-height: 1.75rem;
+  line-height: 2rem;
+  font-size: 1.1rem;
   text-align: center;
 }
 
@@ -647,7 +745,7 @@ header {
 
 .footer__container h4 {
   margin-bottom: 1rem;
-  font-size: 3rem;
+  font-size: 3.5rem;
   font-weight: 700;
   color: var(--secondary-color);
 }
@@ -661,7 +759,7 @@ header {
 }
 
 .footer__socials a {
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   color: var(--secondary-color);
 }
 
@@ -671,7 +769,7 @@ header {
 
 .footer__bar {
   padding: 1rem;
-  font-size: 1rem;
+  font-size: 1.1rem;
   color: var(--text-light);
   text-align: center;
 }
@@ -1139,4 +1237,21 @@ footer {
 
 .prototype-section a:hover {
   text-decoration: underline;
+}
+
+/* Mobile responsive styles for CV dropdown */
+@media (max-width: 768px) {
+  .dropdown-menu {
+    min-width: 200px;
+  }
+
+  .dropdown-item {
+    padding: 12px 14px;
+    font-size: 0.9rem;
+  }
+
+  .dropdown-section-title {
+    font-size: 0.85rem;
+    padding: 6px 14px 2px 14px;
+  }
 }

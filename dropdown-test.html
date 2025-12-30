@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dropdown Test</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #e98018;
+            --secondary-color: #030712;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            padding: 50px;
+            background: #f5f5f5;
+        }
+
+        .btn {
+            padding: 0.625rem 1.5rem;
+            outline: none;
+            border: none;
+            font-size: 1rem;
+            color: var(--white);
+            background-color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+            border-radius: 5rem;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        /* Dropdown Styles */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+            z-index: 1000;
+        }
+
+        .dropdown-toggle {
+            cursor: pointer;
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            z-index: 1001;
+        }
+
+        .dropdown-toggle.active .ri-arrow-down-s-line {
+            transform: rotate(180deg);
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: calc(100% + 8px);
+            left: 0;
+            background-color: var(--white);
+            border: 2px solid var(--primary-color);
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            min-width: 220px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1002;
+            overflow: hidden;
+            pointer-events: none;
+            padding: 0;
+            display: block;
+        }
+
+        .dropdown-menu.show {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+        }
+
+        .dropdown-item {
+            display: flex !important;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 16px;
+            color: var(--secondary-color);
+            text-decoration: none;
+            transition: all 0.2s ease;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .dropdown-item:last-child {
+            border-bottom: none;
+        }
+
+        .dropdown-item:hover {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+
+        .dropdown-item i {
+            font-size: 1.2rem;
+            width: 20px;
+        }
+
+        .dropdown-section {
+            padding: 8px 0;
+        }
+
+        .dropdown-section-title {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            padding: 8px 16px 4px 16px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .dropdown-divider {
+            height: 1px;
+            background-color: rgba(0, 0, 0, 0.1);
+            margin: 4px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Dropdown Test</h1>
+    <div class="dropdown">
+        <button class="btn dropdown-toggle">
+            View CV
+            <i class="ri-arrow-down-s-line" style="margin-left: 8px;"></i>
+        </button>
+        <div class="dropdown-menu">
+            <a href="#" class="dropdown-item">
+                <i class="ri-palette-line"></i>
+                UI UX RESUME
+            </a>
+            <a href="#" class="dropdown-item">
+                <i class="ri-bar-chart-line"></i>
+                Data analyst resume
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // CV Dropdown functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const dropdownToggle = document.querySelector('.dropdown-toggle');
+            const dropdownMenu = document.querySelector('.dropdown-menu');
+
+            if (dropdownToggle && dropdownMenu) {
+                // Toggle dropdown on button click
+                dropdownToggle.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const isActive = dropdownToggle.classList.contains('active');
+
+                    if (isActive) {
+                        dropdownToggle.classList.remove('active');
+                        dropdownMenu.classList.remove('show');
+                    } else {
+                        dropdownToggle.classList.add('active');
+                        dropdownMenu.classList.add('show');
+                    }
+                });
+
+                // Close dropdown when clicking outside
+                document.addEventListener('click', function(e) {
+                    if (!dropdownToggle.contains(e.target) && !dropdownMenu.contains(e.target)) {
+                        dropdownToggle.classList.remove('active');
+                        dropdownMenu.classList.remove('show');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
