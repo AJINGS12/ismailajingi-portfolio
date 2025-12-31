@@ -1,267 +1,693 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
-    />
-    <link rel="stylesheet" href="style.css" />
-    <title>Ismail Umar Ajingi</title>
-  </head>
-  <body>
+    <title>Ismail Umar Ajingi | Portfolio</title>
+    <!-- Modern Icons & Fonts -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --primary-hover: #1d4ed8;
+            --secondary-color: #64748b;
+            --text-dark: #0f172a;
+            --text-light: #475569;
+            --bg-white: #ffffff;
+            --bg-light: #f8fafc;
+            --border: #e2e8f0;
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-white);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+        img { max-width: 100%; display: block; border-radius: 12px; }
+
+        .section__container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 5rem 1rem;
+        }
+
+        .section__header {
+            font-size: 2.25rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .section__subheader {
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            outline: none;
+            border: none;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--bg-white);
+            background-color: var(--primary-color);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* NAVIGATION - MODERN GLASSMORPHISM */
+        nav {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav__header {
+            max-width: 1200px;
+            margin: auto;
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav__logo a {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--text-dark);
+        }
+
+        .nav__logo span { color: var(--primary-color); }
+
+        .nav__menu__btn {
+            font-size: 1.5rem;
+            color: var(--text-dark);
+            cursor: pointer;
+            display: none;
+        }
+
+        .nav__links {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav__links a {
+            font-weight: 500;
+            color: var(--text-light);
+            transition: var(--transition);
+        }
+
+        .nav__links a:hover { color: var(--primary-color); }
+
+        /* HEADER / HERO */
+        header {
+            padding-top: 100px;
+            background: radial-gradient(circle at top right, #eff6ff, transparent);
+        }
+
+        .header__container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .header__content h2 {
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: var(--text-light);
+        }
+
+        .header__content h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin: 0.5rem 0 1rem;
+        }
+
+        .header__content h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .header__content p {
+            max-width: 500px;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+        }
+
+        /* CV DROPDOWN - Z-INDEX FIX */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+            z-index: 1100;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 110%;
+            left: 0;
+            min-width: 240px;
+            background: var(--bg-white);
+            border-radius: 12px;
+            box-shadow: var(--shadow-lg);
+            padding: 0.5rem;
+            display: none;
+            border: 1px solid var(--border);
+            animation: slideUp 0.3s ease;
+        }
+
+        .dropdown.active .dropdown-menu {
+            display: block;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .dropdown-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1rem;
+            color: var(--text-light);
+            font-weight: 500;
+            border-radius: 8px;
+            transition: var(--transition);
+        }
+
+        .dropdown-item:hover {
+            background-color: var(--bg-light);
+            color: var(--primary-color);
+        }
+
+        .header__image {
+            position: relative;
+            z-index: 1; /* Keep image below dropdowns */
+        }
+
+        .header__image img {
+            box-shadow: var(--shadow-lg);
+            border: 8px solid white;
+        }
+
+        /* ABOUT SECTION */
+        .intro__container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .intro__content h4 {
+            margin-top: 2rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+
+        .intro__grid {
+            display: grid;
+            grid-template-columns: auto 20px 1fr;
+            gap: 1rem 0.5rem;
+            margin: 1.5rem 0;
+            font-size: 0.95rem;
+        }
+
+        .intro__grid h5 { color: var(--text-dark); display: flex; align-items: center; gap: 0.5rem; }
+        .intro__grid h5 i { color: var(--primary-color); }
+
+        .intro__flex {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .intro__flex div {
+            background: var(--bg-light);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        /* SKILLS / PROGRESS */
+        .choose { background-color: var(--bg-light); }
+        .choose__grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .choose__card {
+            background: var(--bg-white);
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: var(--shadow-md);
+        }
+
+        .choose__card div:first-child {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.75rem;
+        }
+
+        .choose__progress {
+            height: 8px;
+            background: var(--border);
+            border-radius: 4px;
+            position: relative;
+        }
+
+        .choose__progress::after {
+            content: "";
+            position: absolute;
+            left: 0; top: 0; height: 100%;
+            width: var(--progress);
+            background: var(--primary-color);
+            border-radius: 4px;
+        }
+
+        /* SERVICES */
+        .service__grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service__card {
+            padding: 2.5rem 2rem;
+            background: var(--bg-white);
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .service__card:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .service__card span {
+            display: inline-flex;
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        /* PORTFOLIO */
+        .portfolio__nav {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .portfolio__nav .btn {
+            background: var(--bg-light);
+            color: var(--text-light);
+        }
+
+        .portfolio__nav .btn.mixitup-control-active {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .portfolio__grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .portfolio__card {
+            overflow: hidden;
+            border-radius: 16px;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+        }
+
+        .portfolio__card:hover {
+            transform: scale(1.02);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .portfolio__card img { width: 100%; border-radius: 0; }
+
+        /* BANNER */
+        .banner__container {
+            background: linear-gradient(rgba(37, 99, 235, 0.9), rgba(37, 99, 235, 0.9)), url('https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&q=80&w=1200') center/cover;
+            padding: 6rem 1rem;
+            text-align: center;
+            color: white;
+        }
+
+        .banner__content h2 { color: white; }
+        .banner__content p { max-width: 700px; margin: 1.5rem auto 2rem; opacity: 0.9; }
+        .banner__content .btn { background: white; color: var(--primary-color); }
+
+        /* FOOTER */
+        footer { background: var(--text-dark); color: white; padding: 4rem 1rem 2rem; }
+        .footer__container { text-align: center; }
+        .footer__socials { display: flex; justify-content: center; gap: 1.5rem; margin-top: 1.5rem; }
+        .footer__socials i { font-size: 1.5rem; transition: var(--transition); }
+        .footer__socials i:hover { color: var(--primary-color); }
+        .footer__bar { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.85rem; opacity: 0.6; }
+
+        /* MOBILE ADJUSTMENTS */
+        @media (max-width: 768px) {
+            .nav__links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                padding: 2rem;
+                transition: 0.4s;
+                border-bottom: 1px solid var(--border);
+                z-index: 999;
+            }
+
+            .nav__links.active { left: 0; }
+            .nav__menu__btn { display: block; }
+            .nav__btns { display: none; }
+
+            .header__container, .intro__container { grid-template-columns: 1fr; text-align: center; }
+            .header__content h1 { font-size: 2.5rem; }
+            .header__content p { margin-left: auto; margin-right: auto; }
+            .intro__grid { text-align: left; }
+            .intro__image { order: -1; }
+            .choose__grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
     <nav>
-      <div class="nav__header">
-        <div class="nav__logo">
-          <a href="#">Ismail<span>.</span></a>
+        <div class="nav__header">
+            <div class="nav__logo">
+                <a href="#">Ismail<span>.</span></a>
+            </div>
+            <div class="nav__menu__btn" id="menu-btn">
+                <i class="ri-menu-line"></i>
+            </div>
+            <ul class="nav__links" id="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#intro">Intro</a></li>
+                <li><a href="#service">Services</a></li>
+                <li><a href="#my works">My Works</a></li>
+                <li><a href="certifications.html">Certifications</a></li>
+            </ul>
+            <div class="nav__btns">
+                <button class="btn" onclick="window.location.href='hireme.html'">Hire Me</button>
+            </div>
         </div>
-        <div class="nav__menu__btn" id="menu-btn">
-          <i class="ri-menu-line"></i>
-        </div>
-      </div>
-      <ul class="nav__links" id="nav-links">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#intro">Intro</a></li>
-        <li><a href="#service">Services</a></li>
-        <li><a href="#my works">My Works</a></li>
-        <li><a href="certifications.html">Certifications</a></li>
-      </ul>
-      <div class="nav__btns">
-      <button class="btn" onclick="window.location.href='hireme.html'">Hire Me</button>
-       </div>
     </nav>
 
     <header id="home">
-      <div class="section__container header__container">
-        <div class="header__content">
-          <h2>Hi, I am</h2>
-          <h1>Ismail Ajingi</h1>
-          <h3>Junior BI Analyst|UX/UI Designer</h3>
-          <p>
-            I'm a detail-oriented Junior Business analyst, Ui/Ux designer With strong attention to detail and 
-            a constant openness to learning new experiences,
-            I specialize in turning data into insightful business solutions.
-          </p>
-          <div class="header__btns">
-            <div class="dropdown">
-              <button class="btn dropdown-toggle">
-                View CV
-                <i class="ri-arrow-down-s-line" style="margin-left: 8px;"></i>
-              </button>
-              <div class="dropdown-menu">
-                <a href="https://drive.google.com/file/d/1QNsZ8NY8S3Sge_VJ-CKANP53g8Aa9iAV/view?usp=sharing" target="_blank" class="dropdown-item">
-                  <i class="ri-palette-line"></i>
-                  UI UX RESUME
-                </a>
-                <a href="https://drive.google.com/file/d/1hQk0p-LYnOslkgqo0gHo6DVWF-FeTTQy/view?usp=drive_link" target="_blank" class="dropdown-item">
-                  <i class="ri-bar-chart-line"></i>
-                  Data analyst resume
-                </a>
-              </div>
+        <div class="section__container header__container">
+            <div class="header__content">
+                <h2>Hi, I am</h2>
+                <h1>Ismail Ajingi</h1>
+                <h3>Junior BI Analyst | UX/UI Designer</h3>
+                <p>
+                    I'm a detail-oriented Junior Business analyst, Ui/Ux designer With strong attention to detail and 
+                    a constant openness to learning new experiences,
+                    I specialize in turning data into insightful business solutions.
+                </p>
+                <div class="header__btns">
+                    <div class="dropdown" id="cv-dropdown">
+                        <button class="btn dropdown-toggle">
+                            View CV <i class="ri-arrow-down-s-line" style="margin-left: 8px;"></i>
+                        </button>
+                        <div class="dropdown-menu">
+                            <a href="https://drive.google.com/file/d/1QNsZ8NY8S3Sge_VJ-CKANP53g8Aa9iAV/view?usp=sharing" target="_blank" class="dropdown-item">
+                                <i class="ri-palette-line"></i> UI UX RESUME
+                            </a>
+                            <a href="https://drive.google.com/file/d/1hQk0p-LYnOslkgqo0gHo6DVWF-FeTTQy/view?usp=drive_link" target="_blank" class="dropdown-item">
+                                <i class="ri-bar-chart-line"></i> Data analyst resume
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
+            <div class="header__image">
+                <img src="assets/myphoto.jpg" alt="header" />
+            </div>
         </div>
-        <div class="intro__image">
-          <img src="assets/myphoto.jpg" alt="header" />
-        </div>
-      </div>
     </header>
 
     <section class="section__container intro__container" id="intro">
-      <div class="intro__image">
-        <img src="assets/mypic2.jpg" alt="intro" />
-      </div>
-      <div class="intro__content">
-        <p class="section__subheader">My Intro</p>
-        <h2 class="section__header">About Me</h2>
-        <p class="intro__description">
-        I am Ismail Umar Ajingi, a Junior Business Analyst and Data-Driven UI/UX Designer currently pursuing Computer Science at King Mongkut's University of Technology Thonburi (KMUTT).
-        Driven by curiosity and creativity, I bridge the gap between business insights and user-centered design. 
-        With a strong foundation in data analysis, design thinking, and digital product development, I specialize in transforming data into meaningful user experiences and actionable business solutions. 
-        I thrive where technology meets innovation, continuously learning, evolving, and solving problems that make a real impact.
-        </p>
-        <div class="intro__grid">
-          <h5>
-            <span><i class="ri-user-line"></i></span> Name
-          </h5>
-          <span>:</span>
-          <p>Ismail Umar Ajingi</p>
-          <h5>
-            <span><i class="ri-phone-line"></i></span> Phone
-          </h5>
-          <span>:</span>
-          <p>+66956020771</p>
-          <h5>
-            <span><i class="ri-mail-line"></i></span> Email
-          </h5>
-          <span>:</span>
-          <p>ismailajingi737@gmail.com</p>
+        <div class="intro__image">
+            <img src="assets/mypic2.jpg" alt="intro" />
         </div>
-        <h4>My Interests</h4>
-        <div class="intro__flex">
-          <div>
-            <span><i class="ri-book-open-line"></i></span> Reading
-          </div>
-          <div>
-            <span><i class="ri-briefcase-3-line"></i></span> Travel
-          </div>
-          <div>
-            <span><i class="ri-gamepad-line"></i></span> Video gaming
-          </div>
-          <div>
-            <span><i class="ri-user-shared-line"></i></span> Networking
-          </div>
+        <div class="intro__content">
+            <p class="section__subheader">My Intro</p>
+            <h2 class="section__header">About Me</h2>
+            <p class="intro__description">
+                I am Ismail Umar Ajingi, a Junior Business Analyst and Data-Driven UI/UX Designer currently pursuing Computer Science at King Mongkut's University of Technology Thonburi (KMUTT).
+                Driven by curiosity and creativity, I bridge the gap between business insights and user-centered design. 
+                With a strong foundation in data analysis, design thinking, and digital product development, I specialize in transforming data into meaningful user experiences and actionable business solutions. 
+                I thrive where technology meets innovation, continuously learning, evolving, and solving problems that make a real impact.
+            </p>
+            <div class="intro__grid">
+                <h5><span><i class="ri-user-line"></i></span> Name</h5>
+                <span>:</span> <p>Ismail Umar Ajingi</p>
+                <h5><span><i class="ri-phone-line"></i></span> Phone</h5>
+                <span>:</span> <p>+66956020771</p>
+                <h5><span><i class="ri-mail-line"></i></span> Email</h5>
+                <span>:</span> <p>ismailajingi737@gmail.com</p>
+            </div>
+            <h4>My Interests</h4>
+            <div class="intro__flex">
+                <div><span><i class="ri-book-open-line"></i></span> Reading</div>
+                <div><span><i class="ri-briefcase-3-line"></i></span> Travel</div>
+                <div><span><i class="ri-gamepad-line"></i></span> Video gaming</div>
+                <div><span><i class="ri-user-shared-line"></i></span> Networking</div>
+            </div>
         </div>
-      </div>
     </section>
 
     <section class="choose">
-      <div class="section__container choose__container">
-        <p class="section__subheader">Why Choose Me</p>
-        <h2 class="section__header">My Experties Area</h2>
-        <div class="choose__grid">
-          <div class="choose__card">
-            <div>
-              <h4>Data analysis and visualization</h4>
-              <h4>80%</h4>
+        <div class="section__container choose__container">
+            <p class="section__subheader">Why Choose Me</p>
+            <h2 class="section__header">My Expertise Area</h2>
+            <div class="choose__grid">
+                <div class="choose__card">
+                    <div>
+                        <h4>Data analysis and visualization</h4>
+                        <h4>80%</h4>
+                    </div>
+                    <div class="choose__progress" style="--progress: 80%"></div>
+                </div>
+                <div class="choose__card">
+                    <div>
+                        <h4>Project management</h4>
+                        <h4>80%</h4>
+                    </div>
+                    <div class="choose__progress" style="--progress: 80%"></div>
+                </div>
+                <div class="choose__card">
+                    <div>
+                        <h4>Web/mobile app development</h4>
+                        <h4>70%</h4>
+                    </div>
+                    <div class="choose__progress" style="--progress: 70%"></div>
+                </div>
             </div>
-            <div class="choose__progress" style="--progress: 80%"></div>
-          </div>
-          <div class="choose__card">
-            <div>
-              <h4>Project management</h4>
-              <h4>80%</h4>
-            </div>
-            <div class="choose__progress" style="--progress: 80%"></div>
-          </div>
-          <div class="choose__card">
-            <div>
-              <h4>Web/mobile app development</h4>
-              <h4>70%</h4>
-            </div>
-            <div class="choose__progress" style="--progress: 70%"></div>
-          </div>
         </div>
-      </div>
     </section>
 
     <section class="section__container service__container" id="service">
-      <p class="section__subheader">My Services</p>
-      <h2 class="section__header">What I Offer</h2>
-      <div class="service__grid">
-        <div class="service__card">
-          <span><i class="ri-window-fill"></i></span>
-          <h4>Website Design</h4>
-          <p>
-            I craft user-friendly interfaces that engage visitors and users and
-            help you achieve your online goals with minimum efforts.
-          </p>
+        <p class="section__subheader">My Services</p>
+        <h2 class="section__header">What I Offer</h2>
+        <div class="service__grid">
+            <div class="service__card">
+                <span><i class="ri-window-fill"></i></span>
+                <h4>Website Design</h4>
+                <p>I craft user-friendly interfaces that engage visitors and users and help you achieve your online goals with minimum efforts.</p>
+            </div>
+            <div class="service__card">
+                <span><i class="ri-smartphone-line"></i></span>
+                <h4>Mobile Development</h4>
+                <p>From iOS to Android, i create apps on all platforms that deliver seamless performance and keep users coming back for more.</p>
+            </div>
+            <div class="service__card">
+                <span><i class="ri-bar-chart-box-line"></i></span>
+                <h4>Data Analysis & Visualization</h4>
+                <p>I Transform complex data into actionable insights through clear, impactful visualizations to drive informed business decisions.</p>
+            </div>
+            <div class="service__card">
+                <span><i class="ri-briefcase-4-line"></i></span>
+                <h4>Project management</h4>
+                <p>I assist in planning, organizing, and tracking project activities to ensure timely delivery and coordination between teams.</p>
+            </div>
         </div>
-        <div class="service__card">
-          <span><i class="ri-smartphone-line"></i></span>
-          <h4>Mobile Development</h4>
-          <p>
-            From iOS to Android, i create apps on all platforms that deliver
-            seamless performance and keep users coming back for more.
-          </p>
-        </div>
-        <div class="service__card">
-          <span><i class="ri-bar-chart-box-line"></i></span>
-          <h4>Data Analysis & Visualization</h4>
-          <p>
-            I Transform complex data into actionable insights through clear, 
-            impactful visualizations to drive informed business decisions.
-          </p>
-        </div>
-        <div class="service__card">
-          <span><i class="ri-briefcase-4-line"></i></span>
-          <h4>Project management</h4>
-          <p>
-            I assist in planning, organizing, and tracking project activities to ensure timely delivery.
-            I help coordinate between teams, manage task timelines, maintain documentation, and
-            support communication to keep projects on track and aligned with goals.
-          </p>
-        </div>
-      </div>
     </section>
 
     <section class="portfolio" id="my works">
-      <div class="section__container portfolio__container">
-        <p class="section__subheader">My Portfolio</p>
-        <h2 class="section__header">Recent Works</h2>
-        <div class="portfolio__nav">
-          <button class="btn mixitup-control-active" data-filter="all">
-            All
-          </button>
-          <button class="btn" data-filter=".web">Web/mobile dev</button>
-          <button class="btn" data-filter=".design">Designs</button>
+        <div class="section__container portfolio__container">
+            <p class="section__subheader">My Portfolio</p>
+            <h2 class="section__header">Recent Works</h2>
+            <div class="portfolio__nav">
+                <button class="btn mixitup-control-active" data-filter="all">All</button>
+                <button class="btn" data-filter=".web">Web/mobile dev</button>
+                <button class="btn" data-filter=".design">Designs</button>
+            </div>
+            <div class="portfolio__grid">
+                <div class="portfolio__card mix design">
+                    <a href="novacs.html">
+                        <img src="assets/case study novaseat.jpg" alt="NovaCS Project" />
+                    </a>
+                </div>
+                <div class="portfolio__card mix design">
+                    <a href="Kekezo.html">
+                        <img src="assets/orwr hifi.png" alt="Kekezo Project" />
+                    </a>
+                </div>
+                <div class="portfolio__card mix design">
+                    <a href="assets/ismavero Web app.png" target="_blank">
+                        <img src="assets/ismavero.png" alt="Ismavero Project" />
+                    </a>
+                </div>
+                <div class="portfolio__card mix web">
+                    <a href="https://ajings12.github.io/ismailajingi-portfolio/" target="_blank">
+                        <img src="assets/portfoliothumbnail.jpg" alt="Portfolio Website" />
+                    </a>
+                </div>
+            </div>
         </div>
-        <div class="portfolio__grid">
-          <div class="portfolio__card mix design">
-            <a href="novacs.html">
-              <img src="assets/case study novaseat.jpg" alt="NovaCS Project" />
-            </a>
-          </div>
-          <div class="portfolio__card mix design">
-            <a href="Kekezo.html">
-              <img src="assets/orwr hifi.png" alt="Kekezo Project" />
-            </a>
-          </div>
-          <div class="portfolio__card mix design">
-            <a href="assets/ismavero Web app.png" target="_blank">
-              <img src="assets/ismavero.png" alt="Ismavero Project" />
-            </a>
-          </div>
-          <div class="portfolio__card mix web">
-            <a href="https://ajings12.github.io/ismailajingi-portfolio/" target="_blank">
-              <img src="assets/portfoliothumbnail.jpg" alt="Portfolio Website" />
-            </a>
-          </div>
-        </div>
-      </div>
     </section>
 
     <section class="banner__container">
-      <div class="banner__content">
-        <h2 class="section__header">Have A Project On Your Mind?</h2>
-        <p>
-          Whether it’s uncovering actionable insights from complex data or driving data-informed business decisions,
-          I’m passionate about turning information into impact. 
-          I thrive on analysis, problem-solving, and delivering smart, data-driven solutions.
-          Let’s collaborate!
-        </p>
-        <div class="banner__btn">
-          <a href="mailto:ismailajingi737@gmail.com">
-          <button class="btn">Contact Me</button>
-          </a>
+        <div class="banner__content">
+            <h2 class="section__header">Have A Project On Your Mind?</h2>
+            <p>
+                Whether it’s uncovering actionable insights from complex data or driving data-informed business decisions,
+                I’m passionate about turning information into impact. Let’s collaborate!
+            </p>
+            <div class="banner__btn">
+                <a href="mailto:ismailajingi737@gmail.com">
+                    <button class="btn">Contact Me</button>
+                </a>
+            </div>
         </div>
-      </div>
     </section>
     
     <footer>
-      <div class="section__container footer__container">
-        <h4>Ismail Ajingi</h4>
-        <ul class="footer__socials">
-          <a href="https://www.linkedin.com/in/ismail-umar-ajingi?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank">
-          <i class="ri-linkedin-fill"></i>
-          </a>
-          <a href="#"><i class="ri-behance-fill"></i></a>
-          <a href="https://github.com/AJINGS12"><i class="ri-github-fill"></i></a>
-        </ul>
-      </div>
-      <div class="footer__bar">
-        Copyright © 2025 Ismail Ajingi.
-        All rights reserved.
-      </div>
+        <div class="section__container footer__container">
+            <h4>Ismail Ajingi</h4>
+            <div class="footer__socials">
+                <a href="https://www.linkedin.com/in/ismail-umar-ajingi" target="_blank"><i class="ri-linkedin-fill"></i></a>
+                <a href="#"><i class="ri-behance-fill"></i></a>
+                <a href="https://github.com/AJINGS12" target="_blank"><i class="ri-github-fill"></i></a>
+            </div>
+        </div>
+        <div class="footer__bar">
+            Copyright © 2025 Ismail Ajingi. All rights reserved.
+        </div>
     </footer>
+
+    <!-- Scripts -->
     <script src="https://unpkg.com/scrollreveal"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mixitup/3.3.1/mixitup.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script src="main.js"></script>
-  </body>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Navigation Menu Toggle
+            const menuBtn = document.getElementById('menu-btn');
+            const navLinks = document.getElementById('nav-links');
+            
+            menuBtn.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                menuBtn.querySelector('i').classList.toggle('ri-menu-line');
+                menuBtn.querySelector('i').classList.toggle('ri-close-line');
+            });
+
+            // CV Dropdown Interaction
+            const dropdown = document.getElementById('cv-dropdown');
+            const dropdownBtn = dropdown.querySelector('.dropdown-toggle');
+            
+            dropdownBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                dropdown.classList.toggle('active');
+            });
+
+            // Close dropdown when clicking outside
+            document.addEventListener('click', () => {
+                dropdown.classList.remove('active');
+            });
+
+            // MixItUp Filtering
+            const containerEl = document.querySelector('.portfolio__grid');
+            if (containerEl) {
+                mixitup(containerEl, {
+                    animation: { duration: 300 }
+                });
+            }
+
+            // Scroll Reveal
+            const scrollRevealOption = {
+                distance: "50px",
+                origin: "bottom",
+                duration: 1000,
+            };
+
+            ScrollReveal().reveal(".header__content h1", { ...scrollRevealOption });
+            ScrollReveal().reveal(".header__content h2", { ...scrollRevealOption, delay: 500 });
+            ScrollReveal().reveal(".header__content h3", { ...scrollRevealOption, delay: 1000 });
+            ScrollReveal().reveal(".service__card", { ...scrollRevealOption, interval: 300 });
+        });
+    </script>
+</body>
 </html>
