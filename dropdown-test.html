@@ -4,124 +4,159 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dropdown Test</title>
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=DM+Sans:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
     <style>
         :root {
-            --primary-color: #e98018;
-            --secondary-color: #030712;
-            --white: #ffffff;
+            --white:#FFFFFF;
+            --ink:#0A0A0A;
+            --lime:#E8FF3B;
+            --grey:#F0F0F0;
+            --line: rgba(10,10,10,0.1);
+            --ink-70: rgba(10,10,10,0.7);
+            --ink-45: rgba(10,10,10,0.45);
+
+            --display:'Space Grotesk', sans-serif;
+            --body:'DM Sans', sans-serif;
+            --mono:'Space Mono', monospace;
         }
 
+        * { box-sizing:border-box; }
+
         body {
-            font-family: Arial, sans-serif;
-            padding: 50px;
-            background: #f5f5f5;
+            font-family:var(--body);
+            padding:80px 50px;
+            background:var(--white);
+            color:var(--ink);
+        }
+
+        h1 {
+            font-family:var(--display);
+            font-weight:700;
+            font-size:1.6rem;
+            margin-bottom:2rem;
         }
 
         .btn {
-            padding: 0.625rem 1.5rem;
-            outline: none;
-            border: none;
-            font-size: 1rem;
-            color: var(--white);
-            background-color: var(--primary-color);
-            border: 2px solid var(--primary-color);
-            border-radius: 5rem;
-            transition: 0.3s;
-            cursor: pointer;
+            padding:.9rem 1.6rem;
+            outline:none;
+            font-family:var(--mono);
+            font-size:.85rem;
+            font-weight:700;
+            color:var(--white);
+            background-color:var(--ink);
+            border:1.5px solid var(--ink);
+            border-radius:2px;
+            transition:.2s ease;
+            cursor:pointer;
         }
+        .btn:hover { background:var(--lime); color:var(--ink); }
 
-        /* Dropdown Styles */
+        /* ===== Dropdown ===== */
         .dropdown {
-            position: relative;
-            display: inline-block;
-            z-index: 1000;
+            position:relative;
+            display:inline-block;
+            z-index:1000;
         }
 
         .dropdown-toggle {
-            cursor: pointer;
-            position: relative;
-            display: inline-flex;
-            align-items: center;
-            z-index: 1001;
+            cursor:pointer;
+            position:relative;
+            display:inline-flex;
+            align-items:center;
+            z-index:1001;
         }
 
+        .dropdown-toggle .ri-arrow-down-s-line {
+            transition:transform .25s ease;
+        }
         .dropdown-toggle.active .ri-arrow-down-s-line {
-            transform: rotate(180deg);
+            transform:rotate(180deg);
+        }
+        .dropdown-toggle.active {
+            background:var(--lime);
+            color:var(--ink);
         }
 
         .dropdown-menu {
-            position: absolute;
-            top: calc(100% + 8px);
-            left: 0;
-            background-color: var(--white);
-            border: 2px solid var(--primary-color);
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-            min-width: 220px;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-            z-index: 1002;
-            overflow: hidden;
-            pointer-events: none;
-            padding: 0;
-            display: block;
+            position:absolute;
+            top:calc(100% + 10px);
+            left:0;
+            background-color:var(--white);
+            border:1.5px solid var(--ink);
+            border-radius:2px;
+            box-shadow:6px 6px 0 var(--ink);
+            min-width:240px;
+            opacity:0;
+            visibility:hidden;
+            transform:translateY(-6px);
+            transition:opacity .22s ease, visibility .22s ease, transform .22s ease;
+            z-index:1002;
+            overflow:hidden;
+            pointer-events:none;
+            padding:0;
+            display:block;
         }
 
         .dropdown-menu.show {
-            opacity: 1;
-            visibility: visible;
-            pointer-events: auto;
+            opacity:1;
+            visibility:visible;
+            transform:translateY(0);
+            pointer-events:auto;
         }
 
         .dropdown-item {
-            display: flex !important;
-            align-items: center;
-            gap: 10px;
-            padding: 12px 16px;
-            color: var(--secondary-color);
-            text-decoration: none;
-            transition: all 0.2s ease;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-            width: 100%;
-            box-sizing: border-box;
+            display:flex !important;
+            align-items:center;
+            gap:10px;
+            padding:12px 16px;
+            color:var(--ink);
+            font-family:var(--mono);
+            font-size:.85rem;
+            text-decoration:none;
+            transition:all .18s ease;
+            border-bottom:1px solid var(--line);
+            width:100%;
+            box-sizing:border-box;
         }
 
-        .dropdown-item:last-child {
-            border-bottom: none;
-        }
+        .dropdown-item:last-child { border-bottom:none; }
 
         .dropdown-item:hover {
-            background-color: var(--primary-color);
-            color: var(--white);
+            background-color:var(--lime);
+            color:var(--ink);
+            padding-left:20px;
         }
 
         .dropdown-item i {
-            font-size: 1.2rem;
-            width: 20px;
+            font-size:1.1rem;
+            width:20px;
+            color:var(--ink-45);
         }
+        .dropdown-item:hover i { color:var(--ink); }
 
-        .dropdown-section {
-            padding: 8px 0;
-        }
+        .dropdown-section { padding:8px 0; }
 
         .dropdown-section-title {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: var(--primary-color);
-            padding: 8px 16px 4px 16px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+            display:flex;
+            align-items:center;
+            gap:8px;
+            font-family:var(--mono);
+            font-size:.7rem;
+            font-weight:700;
+            color:var(--ink-45);
+            padding:8px 16px 4px 16px;
+            text-transform:uppercase;
+            letter-spacing:.06em;
         }
 
         .dropdown-divider {
-            height: 1px;
-            background-color: rgba(0, 0, 0, 0.1);
-            margin: 4px 0;
+            height:1px;
+            background-color:var(--line);
+            margin:4px 0;
         }
     </style>
 </head>
@@ -133,25 +168,26 @@
             <i class="ri-arrow-down-s-line" style="margin-left: 8px;"></i>
         </button>
         <div class="dropdown-menu">
-            <a href="#" class="dropdown-item">
-                <i class="ri-palette-line"></i>
-                UI UX RESUME
-            </a>
-            <a href="#" class="dropdown-item">
-                <i class="ri-bar-chart-line"></i>
-                Data analyst resume
-            </a>
+            <div class="dropdown-section">
+                <div class="dropdown-section-title">Resumes</div>
+                <a href="#" class="dropdown-item">
+                    <i class="ri-cloud-line"></i>
+                    Cloud / AI Engineer resume
+                </a>
+                <a href="#" class="dropdown-item">
+                    <i class="ri-palette-line"></i>
+                    UI/UX resume
+                </a>
+            </div>
         </div>
     </div>
 
     <script>
-        // CV Dropdown functionality
         document.addEventListener('DOMContentLoaded', function() {
             const dropdownToggle = document.querySelector('.dropdown-toggle');
             const dropdownMenu = document.querySelector('.dropdown-menu');
 
             if (dropdownToggle && dropdownMenu) {
-                // Toggle dropdown on button click
                 dropdownToggle.addEventListener('click', function(e) {
                     e.preventDefault();
                     const isActive = dropdownToggle.classList.contains('active');
@@ -165,7 +201,6 @@
                     }
                 });
 
-                // Close dropdown when clicking outside
                 document.addEventListener('click', function(e) {
                     if (!dropdownToggle.contains(e.target) && !dropdownMenu.contains(e.target)) {
                         dropdownToggle.classList.remove('active');
