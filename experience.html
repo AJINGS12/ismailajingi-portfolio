@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Experience | Ismail Ajingi</title>
+    <meta name="description" content="Career timeline for Ismail Ajingi — from UI/UX design into cloud and AI engineering." />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=DM+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --white:#FFFFFF;
+            --ink:#0A0A0A;
+            --lime:#E8FF3B;
+            --grey:#F0F0F0;
+            --line: rgba(10,10,10,0.1);
+            --line-soft: rgba(10,10,10,0.06);
+            --ink-70: rgba(10,10,10,0.7);
+            --ink-45: rgba(10,10,10,0.45);
+
+            --display:'Space Grotesk', sans-serif;
+            --body:'DM Sans', sans-serif;
+            --mono:'Space Mono', monospace;
+
+            --radius: 2px;
+        }
+
+        * { margin:0; padding:0; box-sizing:border-box; }
+        html { scroll-behavior:smooth; }
+
+        body {
+            background:var(--white);
+            color:var(--ink);
+            font-family:var(--body);
+            line-height:1.6;
+            overflow-x:hidden;
+        }
+
+        a { text-decoration:none; color:inherit; }
+        ul { list-style:none; }
+        img { max-width:100%; display:block; }
+        ::selection { background:var(--lime); color:var(--ink); }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { animation-duration:.001ms !important; transition-duration:.001ms !important; }
+        }
+
+        .wrap { max-width:1180px; margin:auto; padding:0 1.5rem; }
+
+        .tag {
+            font-family:var(--mono);
+            font-size:.72rem;
+            letter-spacing:.06em;
+            text-transform:uppercase;
+            color:var(--ink-45);
+            display:inline-flex;
+            align-items:center;
+            gap:.4rem;
+            margin-bottom:.6rem;
+        }
+        .tag::before { content:""; width:8px; height:8px; background:var(--lime); border:1.5px solid var(--ink); display:inline-block; }
+
+        .btn {
+            font-family:var(--mono);
+            font-size:.85rem;
+            font-weight:700;
+            padding:.9rem 1.6rem;
+            border-radius:var(--radius);
+            display:inline-flex;
+            align-items:center;
+            gap:.5rem;
+            border:1.5px solid var(--ink);
+            cursor:pointer;
+            transition:.2s ease;
+        }
+        .btn--fill { background:var(--ink); color:var(--white); }
+        .btn--fill:hover { background:var(--lime); color:var(--ink); }
+        .btn--ghost { background:transparent; color:var(--ink); }
+        .btn--ghost:hover { background:var(--ink); color:var(--white); }
+
+        :focus-visible { outline:2px solid var(--ink); outline-offset:3px; }
+
+        /* ===== NAV ===== */
+        nav {
+            position:fixed; top:0; width:100%; z-index:1000;
+            background:rgba(255,255,255,0.9);
+            backdrop-filter:blur(10px);
+            border-bottom:1px solid var(--line);
+        }
+        .nav__row {
+            max-width:1180px; margin:auto; padding:1.1rem 1.5rem;
+            display:flex; align-items:center; justify-content:space-between;
+        }
+        .nav__logo {
+            font-family:var(--display); font-weight:700; font-size:1.1rem;
+            display:flex; align-items:center; gap:.5rem;
+        }
+        .nav__logo .sq { width:11px; height:11px; background:var(--lime); border:1.5px solid var(--ink); display:inline-block; }
+
+        .nav__links { display:flex; align-items:center; gap:.25rem; }
+        .nav__links a {
+            position:relative;
+            font-family:var(--mono);
+            font-size:.82rem;
+            padding:.55rem 1.1rem;
+            border-radius:50px;
+            overflow:hidden;
+            z-index:1;
+        }
+        .nav__links a::before {
+            content:"";
+            position:absolute;
+            left:0; top:0; bottom:0;
+            width:6px;
+            background:var(--lime);
+            border-radius:50px;
+            transform:scaleX(0);
+            transform-origin:left;
+            transition:width .28s ease, transform .28s ease;
+            z-index:-1;
+        }
+        .nav__links a:hover::before { width:100%; transform:scaleX(1); }
+        .nav__links a:hover { color:var(--ink); }
+        .nav__menu__btn { display:none; font-size:1.4rem; cursor:pointer; }
+
+        /* "More" dropdown */
+        .nav__more { position:relative; }
+        .nav__more-toggle {
+            position:relative;
+            font-family:var(--mono);
+            font-size:.82rem;
+            padding:.55rem 1.1rem;
+            border-radius:50px;
+            overflow:hidden;
+            z-index:1;
+            background:none;
+            border:none;
+            color:var(--ink);
+            cursor:pointer;
+            display:inline-flex;
+            align-items:center;
+            gap:.35rem;
+        }
+        .nav__more-toggle::before {
+            content:"";
+            position:absolute;
+            left:0; top:0; bottom:0;
+            width:6px;
+            background:var(--lime);
+            border-radius:50px;
+            transform:scaleX(0);
+            transform-origin:left;
+            transition:width .28s ease, transform .28s ease;
+            z-index:-1;
+        }
+        .nav__more-toggle:hover::before,
+        .nav__more.active .nav__more-toggle::before { width:100%; transform:scaleX(1); }
+        .nav__more-toggle i { font-size:1rem; transition:transform .2s ease; }
+        .nav__more.active .nav__more-toggle i { transform:rotate(180deg); }
+
+        .nav__more-menu {
+            position:absolute;
+            top:calc(100% + 10px);
+            left:50%;
+            min-width:200px;
+            background:var(--white);
+            border:1.5px solid var(--ink);
+            box-shadow:6px 6px 0 var(--ink);
+            padding:.4rem;
+            opacity:0;
+            visibility:hidden;
+            pointer-events:none;
+            transform:translateX(-50%) translateY(-6px);
+            transition:opacity .2s ease, visibility .2s ease, transform .2s ease;
+            z-index:1002;
+        }
+        .nav__more.active .nav__more-menu {
+            opacity:1; visibility:visible; pointer-events:auto;
+            transform:translateX(-50%) translateY(0);
+        }
+        .nav__more-menu a {
+            display:flex; align-items:center; gap:.65rem;
+            padding:.7rem .9rem;
+            font-family:var(--mono);
+            font-size:.82rem;
+            color:var(--ink-70);
+            transition:.15s ease;
+        }
+        .nav__more-menu a:hover { background:var(--grey); color:var(--ink); }
+        .nav__more-menu a.active { color:var(--ink); font-weight:700; background:var(--grey); }
+
+        @media (max-width:860px) {
+            .nav__links {
+                position:fixed; top:64px; left:-100%; width:100%; height:calc(100vh - 64px);
+                background:var(--white); flex-direction:column; align-items:flex-start;
+                padding:2rem 1.5rem; gap:.5rem; transition:.35s; border-top:1px solid var(--line);
+            }
+            .nav__links.active { left:0; }
+            .nav__links a { width:100%; }
+            .nav__menu__btn { display:block; }
+            .nav__btn { display:none; }
+
+            .nav__more { width:100%; }
+            .nav__more-toggle { width:100%; justify-content:space-between; }
+            .nav__more-menu {
+                position:static;
+                transform:none;
+                box-shadow:none;
+                border:none;
+                border-left:2px solid var(--line);
+                border-radius:0;
+                margin-left:.6rem;
+                display:none;
+                min-width:0;
+                width:calc(100% - .6rem);
+            }
+            .nav__more.active .nav__more-menu { display:block; transform:none; }
+        }
+
+        /* ===== PAGE HEADER ===== */
+        .page__header { padding:9.5rem 0 3rem; border-bottom:1px solid var(--line); }
+        .page__header__row { display:flex; justify-content:space-between; align-items:flex-end; gap:1.5rem; flex-wrap:wrap; }
+        .page__header h1 {
+            font-family:var(--display);
+            font-weight:700;
+            font-size:clamp(2.2rem, 5vw, 3.2rem);
+            letter-spacing:-0.02em;
+            margin-bottom:.75rem;
+        }
+        .page__header p { color:var(--ink-70); max-width:520px; }
+
+        .index { font-family:var(--mono); font-size:.8rem; border-top:1px solid var(--line); margin-top:2rem; padding-top:1rem; display:flex; gap:2rem; flex-wrap:wrap; }
+        .index div { display:flex; flex-direction:column; gap:.25rem; }
+        .index b { font-family:var(--display); font-size:1.3rem; font-weight:700; }
+        .index span { color:var(--ink-45); text-transform:uppercase; letter-spacing:.05em; font-size:.65rem; }
+
+        /* ===== TIMELINE ===== */
+        .timeline__section { padding:4.5rem 0 6rem; }
+
+        .timeline { display:flex; flex-direction:column; }
+
+        .timeline__item {
+            display:grid;
+            grid-template-columns:32px 1fr;
+            gap:1.75rem;
+        }
+
+        .timeline__rail { position:relative; display:flex; justify-content:center; }
+        .timeline__rail::before {
+            content:"";
+            position:absolute;
+            top:30px;
+            bottom:-3.5rem;
+            width:2px;
+            background:var(--line);
+            left:50%;
+            transform:translateX(-50%);
+        }
+        .timeline__item:last-child .timeline__rail::before { display:none; }
+        .timeline__dot {
+            width:16px; height:16px;
+            background:var(--lime);
+            border:2px solid var(--ink);
+            border-radius:50%;
+            margin-top:6px;
+            z-index:1;
+            flex-shrink:0;
+        }
+        .timeline__item.is-current .timeline__dot { background:var(--ink); }
+
+        .timeline__content { padding-bottom:3.5rem; }
+
+        .timeline__meta {
+            display:flex;
+            align-items:center;
+            gap:.6rem;
+            flex-wrap:wrap;
+            margin-bottom:.7rem;
+        }
+        .timeline__period {
+            font-family:var(--mono);
+            font-size:.68rem;
+            text-transform:uppercase;
+            letter-spacing:.05em;
+            color:var(--ink);
+            background:var(--lime);
+            border:1px solid var(--ink);
+            padding:.25rem .6rem;
+        }
+        .timeline__period.is-muted { background:var(--white); color:var(--ink-45); border-color:var(--line); }
+
+        .timeline__role {
+            font-family:var(--display);
+            font-weight:700;
+            font-size:1.35rem;
+            letter-spacing:-0.01em;
+        }
+        .timeline__org {
+            font-family:var(--mono);
+            font-size:.85rem;
+            color:var(--ink-45);
+            margin-top:.15rem;
+            margin-bottom:.9rem;
+        }
+        .timeline__org strong { color:var(--ink-70); font-weight:500; }
+
+        .timeline__desc { color:var(--ink-70); font-size:.95rem; max-width:640px; margin-bottom:1.1rem; }
+
+        .timeline__pills { display:flex; flex-wrap:wrap; gap:.5rem; margin-bottom:1.1rem; }
+        .timeline__pill {
+            font-family:var(--mono);
+            font-size:.72rem;
+            padding:.35rem .65rem;
+            border:1px solid var(--line);
+            color:var(--ink-70);
+        }
+
+        .timeline__projects { display:flex; flex-direction:column; gap:.75rem; }
+        .timeline__project {
+            border:1px solid var(--line);
+            padding:.9rem 1.1rem;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            gap:1rem;
+            flex-wrap:wrap;
+            transition:.2s ease;
+        }
+        .timeline__project:hover { border-color:var(--ink); box-shadow:4px 4px 0 var(--ink); transform:translate(-2px,-2px); }
+        .timeline__project-name { font-family:var(--display); font-weight:600; font-size:.95rem; }
+        .timeline__project-desc { font-family:var(--body); font-size:.82rem; color:var(--ink-70); margin-top:.2rem; }
+        .timeline__project-link {
+            font-family:var(--mono);
+            font-size:.72rem;
+            font-weight:700;
+            display:inline-flex;
+            align-items:center;
+            gap:.3rem;
+            flex-shrink:0;
+        }
+
+        @media (max-width:640px) {
+            .timeline__item { grid-template-columns:20px 1fr; gap:1rem; }
+            .timeline__rail::before { top:26px; }
+        }
+
+        /* ===== CTA ===== */
+        .banner__container { background:var(--lime); padding:4.5rem 0; }
+        .banner__inner { display:flex; justify-content:space-between; align-items:center; gap:2rem; flex-wrap:wrap; }
+        .banner__content h2 { font-family:var(--display); font-weight:700; font-size:clamp(1.5rem, 3vw, 2rem); line-height:1.2; }
+        .banner__content p { color:var(--ink-70); margin-top:.5rem; max-width:420px; }
+        .banner__container .btn--fill { background:var(--ink); color:var(--white); }
+        .banner__container .btn--fill:hover { background:var(--white); color:var(--ink); }
+
+        /* ===== FOOTER ===== */
+        footer { padding:4rem 0 2rem; }
+        .footer__row { display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:2rem; padding-bottom:2.5rem; border-bottom:1px solid var(--line); }
+        .footer__brand { font-family:var(--display); font-weight:700; font-size:1.25rem; display:flex; align-items:center; gap:.5rem; }
+        .footer__brand .sq { width:10px; height:10px; background:var(--lime); border:1.5px solid var(--ink); }
+        .footer__tag { font-family:var(--mono); font-size:.78rem; color:var(--ink-45); margin-top:.5rem; max-width:280px; }
+        .footer__socials { display:flex; gap:.8rem; }
+        .footer__socials a { width:42px; height:42px; display:flex; align-items:center; justify-content:center; border:1.5px solid var(--ink); transition:.2s ease; }
+        .footer__socials a:hover { background:var(--lime); }
+        .footer__bar { font-family:var(--mono); font-size:.72rem; color:var(--ink-45); display:flex; justify-content:space-between; flex-wrap:wrap; gap:.5rem; padding-top:1.5rem; }
+
+        @media (max-width:768px) {
+            .page__header { padding:8rem 0 2.5rem; }
+            .banner__inner { text-align:center; justify-content:center; flex-direction:column; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="nav__row">
+            <div class="nav__logo"><span class="sq"></span>ismail ajingi</div>
+            <div class="nav__menu__btn" id="menu-btn"><i class="ri-menu-line"></i></div>
+            <ul class="nav__links" id="nav-links">
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="index.html#intro">About</a></li>
+                <li><a href="index.html#service">What I build</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li class="nav__more" id="nav-more">
+                    <button class="nav__more-toggle" id="more-toggle" type="button">
+                        More <i class="ri-arrow-down-s-line"></i>
+                    </button>
+                    <div class="nav__more-menu">
+                        <a href="certifications.html"><i class="ri-award-line"></i> Certifications</a>
+                        <a href="experience.html" class="active"><i class="ri-briefcase-4-line"></i> Experience</a>
+                    </div>
+                </li>
+            </ul>
+            <div class="nav__btns">
+                <button class="btn btn--fill" onclick="window.location.href='hireme.html'">Hire me</button>
+            </div>
+        </div>
+    </nav>
+
+    <section class="page__header">
+        <div class="wrap page__header__row">
+            <div>
+                <p class="tag">Career timeline</p>
+                <h1>Experience</h1>
+                <p>From UI/UX design into cloud and AI engineering — the path so far, and what I'm building along the way.</p>
+            </div>
+        </div>
+        <div class="wrap">
+            <div class="index">
+                <div><b>4</b><span>Chapters</span></div>
+                <div><b>UI/UX</b><span>Where it started</span></div>
+                <div><b>Cloud + AI</b><span>Current focus</span></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="timeline__section">
+        <div class="wrap">
+            <div class="timeline">
+
+                <!-- 01 — UI/UX Design -->
+                <div class="timeline__item">
+                    <div class="timeline__rail"><span class="timeline__dot"></span></div>
+                    <div class="timeline__content">
+                        <div class="timeline__meta">
+                            <span class="timeline__period is-muted">Where it started</span>
+                        </div>
+                        <h3 class="timeline__role">UI/UX Designer</h3>
+                        <p class="timeline__org">My <strong>breakthrough into tech</strong></p>
+                        <p class="timeline__desc">
+                            Design was my way in. I learned to turn rough ideas into usable interfaces — user flows,
+                            wireframes, and prototypes — before writing a single line of production code.
+                        </p>
+                        <div class="timeline__pills">
+                            <span class="timeline__pill">Figma</span>
+                            <span class="timeline__pill">Wireframing</span>
+                            <span class="timeline__pill">Prototyping</span>
+                            <span class="timeline__pill">User research</span>
+                        </div>
+                        <div class="timeline__projects">
+                            <div class="timeline__project">
+                                <div>
+                                    <div class="timeline__project-name">Kekezo</div>
+                                    <div class="timeline__project-desc">A ride-hailing app design for Keke Napep — Nigeria's tricycle taxis.</div>
+                                </div>
+                                <a href="Kekezo.html" class="timeline__project-link">View case study <i class="ri-arrow-right-line"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 02 — Octaship -->
+                <div class="timeline__item">
+                    <div class="timeline__rail"><span class="timeline__dot"></span></div>
+                    <div class="timeline__content">
+                        <div class="timeline__meta">
+                            <span class="timeline__period is-muted">Next step</span>
+                        </div>
+                        <h3 class="timeline__role">Product Designer</h3>
+                        <p class="timeline__org">At <strong>Octaship</strong> — a tech-powered logistics company</p>
+                        <p class="timeline__desc">
+                            Took the UI/UX foundation into a real product — contributing frontend designs for
+                            Octaship's logistics platform, working alongside engineering to ship interfaces that
+                            held up outside of a design file.
+                        </p>
+                        <div class="timeline__pills">
+                            <span class="timeline__pill">Figma</span>
+                            <span class="timeline__pill">Design systems</span>
+                            <span class="timeline__pill">Frontend handoff</span>
+                            <span class="timeline__pill">Cross-functional collaboration</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 03 — Cloud Engineering -->
+                <div class="timeline__item is-current">
+                    <div class="timeline__rail"><span class="timeline__dot"></span></div>
+                    <div class="timeline__content">
+                        <div class="timeline__meta">
+                            <span class="timeline__period">Currently learning</span>
+                        </div>
+                        <h3 class="timeline__role">Cloud Engineer</h3>
+                        <p class="timeline__org">Self-directed, <strong>building toward production infra</strong></p>
+                        <p class="timeline__desc">
+                            Early days here — still beginner-friendly, still learning by doing. No dedicated
+                            production project yet, but building comfort with the tools that back the products
+                            I ship.
+                        </p>
+                        <div class="timeline__pills">
+                            <span class="timeline__pill">AWS</span>
+                            <span class="timeline__pill">Railway</span>
+                            <span class="timeline__pill">Docker</span>
+                            <span class="timeline__pill">CI/CD</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 04 — AI Engineering -->
+                <div class="timeline__item is-current">
+                    <div class="timeline__rail"><span class="timeline__dot"></span></div>
+                    <div class="timeline__content">
+                        <div class="timeline__meta">
+                            <span class="timeline__period">Currently building</span>
+                        </div>
+                        <h3 class="timeline__role">AI Engineer</h3>
+                        <p class="timeline__org">Coursework, agents, and <strong>shipped tools</strong></p>
+                        <p class="timeline__desc">
+                            Where design and cloud meet models. Started with computer vision as part of an AI
+                            course, and have since moved into building agents that solve real, specific problems.
+                        </p>
+                        <div class="timeline__pills">
+                            <span class="timeline__pill">RAG</span>
+                            <span class="timeline__pill">LLM APIs</span>
+                            <span class="timeline__pill">Vector DBs</span>
+                            <span class="timeline__pill">Agentic systems</span>
+                        </div>
+                        <div class="timeline__projects">
+                            <div class="timeline__project">
+                                <div>
+                                    <div class="timeline__project-name">AI SafePark</div>
+                                    <div class="timeline__project-desc">Term project for my AI course — Roboflow for illegal-parking detection, Arduino for physical alerts.</div>
+                                </div>
+                                <a href="projects.html" class="timeline__project-link">View project <i class="ri-arrow-right-line"></i></a>
+                            </div>
+                            <div class="timeline__project">
+                                <div>
+                                    <div class="timeline__project-name">PayDiagnose</div>
+                                    <div class="timeline__project-desc">An AI agent that debugs webhook errors in seconds.</div>
+                                </div>
+                                <a href="projects.html" class="timeline__project-link">View project <i class="ri-arrow-right-line"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="banner__container">
+        <div class="wrap banner__inner">
+            <div class="banner__content">
+                <h2>Want the full CV?</h2>
+                <p>Every chapter here backs up something in the resume — happy to send the full picture.</p>
+            </div>
+            <a href="index.html#home"><button class="btn btn--fill">Back to portfolio</button></a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="wrap">
+            <div class="footer__row">
+                <div>
+                    <div class="footer__brand"><span class="sq"></span>Ismail Ajingi</div>
+                    <p class="footer__tag">Cloud &amp; AI Engineer — Bangkok, Thailand.</p>
+                </div>
+                <div class="footer__socials">
+                    <a href="https://www.linkedin.com/in/ismail-umar-ajingi" target="_blank" aria-label="LinkedIn"><i class="ri-linkedin-fill"></i></a>
+                    <a href="https://github.com/AJINGS12" target="_blank" aria-label="GitHub"><i class="ri-github-fill"></i></a>
+                    <a href="#" aria-label="Behance"><i class="ri-behance-fill"></i></a>
+                </div>
+            </div>
+            <div class="footer__bar">
+                <span>© 2026 Ismail Ajingi</span>
+                <span>Built solo.</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuBtn = document.getElementById('menu-btn');
+            const navLinks = document.getElementById('nav-links');
+
+            menuBtn.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                menuBtn.querySelector('i').classList.toggle('ri-menu-line');
+                menuBtn.querySelector('i').classList.toggle('ri-close-line');
+            });
+
+            document.querySelectorAll('.nav__links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('active');
+                    menuBtn.querySelector('i').classList.add('ri-menu-line');
+                    menuBtn.querySelector('i').classList.remove('ri-close-line');
+                });
+            });
+
+            const navMore = document.getElementById('nav-more');
+            const moreToggle = document.getElementById('more-toggle');
+            moreToggle.addEventListener('click', (e) => {
+                e.stopPropagation();
+                navMore.classList.toggle('active');
+            });
+            document.addEventListener('click', () => navMore.classList.remove('active'));
+        });
+    </script>
+</body>
+</html>
