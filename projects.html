@@ -231,6 +231,7 @@
             color:var(--ink-45);
         }
         .proj__thumb img { position:relative; z-index:1; width:100%; height:100%; object-fit:cover; transition:transform .4s ease; }
+        .proj__thumb--logo img { object-fit:contain; padding:1.25rem; }
         .proj__card:hover .proj__thumb img { transform:scale(1.04); }
 
         .proj__links {
@@ -334,9 +335,9 @@
                 <div class="proj__body">
                     <span class="proj__cat">Product Platform</span>
                     <h3>InsurAsync</h3>
-                    <p>Insurance claims shouldn't need everyone on the same call at the same time to move forward.</p>
+                    <p>InsurAsync lets three AI agents — for the policyholder, the insurer, and the repair shop — negotiate an insurance claim directly using real WebMCP tools, instead of weeks of emails and phone calls between people who never talk to each other. Every tool call checks against real data — real coverage limits, real document requirements, real repair pricing — and the final settlement always needs a human's confirmation, not an agent's.</p>
                 </div>
-                <div class="proj__thumb">
+                <div class="proj__thumb proj__thumb--logo">
                     <!-- Replace with your thumbnail at assets/insurasync-thumbnail.jpg -->
                     <img src="assets/insurAsnyc logo.png" alt="InsurAsync thumbnail" onerror="this.style.display='none';" />
                     <span class="proj__thumb__fallback">InsurAsync thumbnail</span>
@@ -354,7 +355,7 @@
                     <h3>Faultline</h3>
                     <p>An AI agent that traces data incidents through DataHub lineage, alerts real owners, and writes the incident back to the graph.</p>
                 </div>
-                <div class="proj__thumb">
+                <div class="proj__thumb proj__thumb--logo">
                     <!-- Replace with your thumbnail at assets/faultline-thumbnail.jpg -->
                     <img src="assets/faultline logo.png" alt="Faultline thumbnail" onerror="this.style.display='none';" />
                     <span class="proj__thumb__fallback">Faultline thumbnail</span>
