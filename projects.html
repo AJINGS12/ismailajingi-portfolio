@@ -214,8 +214,23 @@
             border-top:1px solid var(--line);
             border-bottom:1px solid var(--line);
             overflow:hidden;
+            position:relative;
         }
-        .proj__thumb img { width:100%; height:100%; object-fit:cover; transition:transform .4s ease; }
+        .proj__thumb__fallback {
+            position:absolute;
+            inset:0;
+            width:100%;
+            height:100%;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            font-family:var(--mono);
+            font-size:.75rem;
+            text-transform:uppercase;
+            letter-spacing:.05em;
+            color:var(--ink-45);
+        }
+        .proj__thumb img { position:relative; z-index:1; width:100%; height:100%; object-fit:cover; transition:transform .4s ease; }
         .proj__card:hover .proj__thumb img { transform:scale(1.04); }
 
         .proj__links {
@@ -291,8 +306,8 @@
             <h1>Projects</h1>
             <p>A few things I've built end to end — an AI debugging agent, a community platform, and a computer-vision safety project.</p>
             <div class="index">
-                <div><b>3</b><span>Projects</span></div>
-                <div><b>3</b><span>Categories</span></div>
+                <div><b>5</b><span>Projects</span></div>
+                <div><b>4</b><span>Categories</span></div>
                 <div><b>Solo + team</b><span>Built as</span></div>
             </div>
         </div>
@@ -306,12 +321,49 @@
                 <button class="cat__pill" data-filter="ai-agent">AI Agents</button>
                 <button class="cat__pill" data-filter="community">Community Platforms</button>
                 <button class="cat__pill" data-filter="cv-iot">Computer Vision &amp; IoT</button>
+                <button class="cat__pill" data-filter="product-platform">Product Platforms</button>
             </div>
         </div>
     </section>
 
     <section class="proj__section">
         <div class="wrap proj__grid" id="projGrid">
+
+            <!-- InsurAsync -->
+            <article class="proj__card" data-category="product-platform">
+                <div class="proj__body">
+                    <span class="proj__cat">Product Platform</span>
+                    <h3>InsurAsync</h3>
+                    <p>Insurance claims shouldn't need everyone on the same call at the same time to move forward.</p>
+                </div>
+                <div class="proj__thumb">
+                    <!-- Replace with your thumbnail at assets/insurasync-thumbnail.jpg -->
+                    <img src="assets/insurAsnyc logo.png" alt="InsurAsync thumbnail" onerror="this.style.display='none';" />
+                    <span class="proj__thumb__fallback">InsurAsync thumbnail</span>
+                </div>
+                <div class="proj__links">
+                    <a href="https://www.youtube.com/watch?v=0cB3Nb6ohd0" target="_blank" rel="noopener noreferrer"><i class="ri-external-link-line"></i> Demo</a>
+                    <a href="https://github.com/AJINGS12/InsurAsync" target="_blank" rel="noopener noreferrer"><i class="ri-github-fill"></i> GitHub</a>
+                </div>
+            </article>
+
+            <!-- Faultline -->
+            <article class="proj__card" data-category="product-platform">
+                <div class="proj__body">
+                    <span class="proj__cat">Product Platform</span>
+                    <h3>Faultline</h3>
+                    <p>An AI agent that traces data incidents through DataHub lineage, alerts real owners, and writes the incident back to the graph.</p>
+                </div>
+                <div class="proj__thumb">
+                    <!-- Replace with your thumbnail at assets/faultline-thumbnail.jpg -->
+                    <img src="assets/faultline logo.png" alt="Faultline thumbnail" onerror="this.style.display='none';" />
+                    <span class="proj__thumb__fallback">Faultline thumbnail</span>
+                </div>
+                <div class="proj__links">
+                    <a href="https://www.youtube.com/watch?v=TmJ-Ci3n3uU" target="_blank" rel="noopener noreferrer"><i class="ri-external-link-line"></i> Demo</a>
+                    <a href="https://github.com/AJINGS12/faultline" target="_blank" rel="noopener noreferrer"><i class="ri-github-fill"></i> GitHub</a>
+                </div>
+            </article>
 
             <!-- PayDiagnose -->
             <article class="proj__card" data-category="ai-agent">
@@ -359,7 +411,7 @@
                 </div>
                 <div class="proj__links">
                     <a href="#" target="_blank" class="disabled"><i class="ri-external-link-line"></i> Live demo</a>
-                    <a href="#" target="_blank" class="disabled"><i class="ri-github-fill"></i> GitHub</a>
+                    <a href="https://github.com/itsdadelous/AI-PARKING-CHECK" target="_blank" rel="noopener noreferrer"><i class="ri-github-fill"></i> GitHub</a>
                 </div>
             </article>
 
