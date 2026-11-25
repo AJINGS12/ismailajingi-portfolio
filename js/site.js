@@ -88,7 +88,7 @@
                 <div class="detail__links">
                     ${linkBtn(p.demo, "Live demo", "ri-arrow-right-up-line", "pill-btn--accent")}
                     ${p.website ? linkBtn(p.website, "Website", "ri-global-line", "pill-btn--glass") : ""}
-                    ${linkBtn(p.github, "GitHub repo", "ri-github-fill", "pill-btn--glass")}
+                    ${p.github === undefined ? "" : linkBtn(p.github, "GitHub repo", "ri-github-fill", "pill-btn--glass")}
                 </div>
             </div>
             <div class="detail__side">
