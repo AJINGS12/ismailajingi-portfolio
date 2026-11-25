@@ -57,7 +57,7 @@ window.PROJECTS = [
         description:
             "An AI-powered compliance platform for Thai immigration. We built a RAG-powered AI assistant that answers your immigration questions accurately, backed by a high-quality retrieval pipeline over official immigration rules and documents.",
         tools: ["Python", "FastAPI", "LangChain", "OpenAI API", "Vector database", "Embeddings", "Next.js"],
-        demo: "#",       // TODO: paste the live demo link
+        demo: "https://youtu.be/mSQYOKKmXO0?si=f77kGFqoKMFJedx",
         website: "#",    // TODO: paste the website link
         github: null,
         image: null,
